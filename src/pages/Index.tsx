@@ -83,7 +83,7 @@ const Index = ({ onFarmerLogin, onMarketplaceLogin }: IndexProps) => {
           <div className="flex items-center gap-2">
             <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg overflow-hidden">
               <img 
-                src="/src/assets/hi.png" 
+                src="/hi.png" 
                 alt="KrishiSetu Logo" 
                 className="w-full h-full object-cover"
               />
@@ -185,7 +185,7 @@ const Index = ({ onFarmerLogin, onMarketplaceLogin }: IndexProps) => {
               >
                 <div className="flex items-center space-x-3">
                   <img 
-                    src="/src/assets/main-logo-crop.png" 
+                    src="/main-logo-crop.png" 
                     alt="KrishiSetu Logo" 
                     className="w-20 h-20 rounded-sm object-cover group-hover:scale-110 transition-transform"
                   />
@@ -201,7 +201,7 @@ const Index = ({ onFarmerLogin, onMarketplaceLogin }: IndexProps) => {
               >
                 <div className="flex items-center space-x-3">
                   <img 
-                    src="/src/assets/market-logo-removebg-preview.png" 
+                    src="/market-logo-removebg-preview.png" 
                     alt="Marketplace Logo" 
                     className="w-20 h-20 rounded-sm object-cover group-hover:scale-110 transition-transform"
                   />
