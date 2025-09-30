@@ -190,7 +190,7 @@ Our dedicated team of developers and designers working together to empower India
 
 ## 📞 Support
 
-For support, email support@cropkisansahayyak.com or create an issue in this repository.
+For support, email manthanv900@gmail.com or create an issue in this repository.
 
 ---
 
