@@ -23,6 +23,7 @@ import MarketplaceLogin from "./components/AdminLogin";
 import MarketplaceSignup from "./components/MarketplaceSignup";
 import MarketplaceDashboard from "./components/AdminDashboard";
 import FarmerDashboard from "./components/FarmerDashboard";
+import TeamSection from "./components/TeamSection";
 
 const queryClient = new QueryClient();
 
@@ -345,6 +346,7 @@ const App = () => {
             <Route path="/test" element={<TestPage />} />
             <Route path="/rainfall-demo" element={<RainfallDemo />} />
             <Route path="/rainfall-forecast" element={<RainfallForecast />} />
+            <Route path="/team" element={<TeamSection />} />
             <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>

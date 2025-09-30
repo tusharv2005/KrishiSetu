@@ -166,6 +166,21 @@ The platform includes comprehensive market data for:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 👥 Team
+
+Our dedicated team of developers and designers working together to empower Indian farmers:
+
+| Role | Name |
+|------|------|
+| **Team Leader** | Manthan Varma |
+| **Technical Lead/Co-lead** | Yuval Shah |
+| **Frontend Architect** | Tushar Varshney |
+| **UI/UX Designer** | Aanannya Asati |
+| **Database Engineer** | Vedant Pandey |
+| **DevOps Engineer** | Mokshika Jain |
+
+[📋 Complete Team Details](TEAM.md)
+
 ## 🙏 Acknowledgments
 
 - **Government of India**: For MSP data and agricultural policies

@@ -347,13 +347,23 @@ const Index = ({ onFarmerLogin, onMarketplaceLogin }: IndexProps) => {
               <Sprout className="h-6 w-6 text-green-600" />
               <span className="text-lg font-semibold">{t.title}</span>
             </div>
-            <div className="text-center md:text-right">
-              <p className="text-sm text-gray-600">
-                Built for Indian Farmers | MSP Reference Available
-              </p>
-              <p className="text-xs text-gray-500 mt-1">
-                Platform does not guarantee MSP procurement. Private trades may vary.
-              </p>
+            <div className="flex flex-col md:flex-row items-center gap-4">
+              <Button
+                variant="ghost"
+                onClick={() => navigate('/team')}
+                className="flex items-center gap-2 text-gray-600 hover:text-green-600"
+              >
+                <Users className="w-4 h-4" />
+                Meet Our Team
+              </Button>
+              <div className="text-center md:text-right">
+                <p className="text-sm text-gray-600">
+                  Built for Indian Farmers | MSP Reference Available
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Platform does not guarantee MSP procurement. Private trades may vary.
+                </p>
+              </div>
             </div>
           </div>
         </div>
