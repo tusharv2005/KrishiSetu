@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ArrowLeft, TrendingUp, TrendingDown, Lightbulb } from "lucide-react";
+import { ArrowLeft, TrendingUp, TrendingDown, Lightbulb, Home } from "lucide-react";
 import { cropRecommendations } from "@/data/mockData";
+import AdoptionConfirmationDialog from "./AdoptionConfirmationDialog";
 
 interface CultivationPlannerProps {
   cropId: number;
@@ -32,20 +33,30 @@ export default function CultivationPlanner({ cropId, farmerData, onBack }: Culti
   useEffect(() => {
     if (!crop) return;
 
+    // Use original economics as base, only adjust for variety/fertilizer changes
     const variety = crop.varieties[selectedVariety];
     const fertilizer = crop.fertilizers[selectedFertilizer];
     
-    const seedCostPerAcre = variety.seedRequired * variety.premium;
-    const fertilizerCostPerAcre = fertilizer.quantity * fertilizer.costPerKg;
-    const grossIncome = variety.yield * 100 * variety.premium / 100; // Simplified calculation
-    const netProfit = grossIncome - seedCostPerAcre - fertilizerCostPerAcre;
+    // For the first variety and fertilizer, use original economics
+    if (selectedVariety === 0 && selectedFertilizer === 0) {
+      setEconomics(crop.economics);
+    } else {
+      // Recalculate for different variety/fertilizer combinations
+      // Assume seed cost is proportional to variety premium
+      const seedCostPerAcre = crop.economics.seedCostPerAcre * (variety.premium / 2400);
+      const fertilizerCostPerAcre = fertilizer.quantity * fertilizer.costPerKg;
+      
+      // Gross income based on variety yield and market price
+      const grossIncome = variety.yield * variety.premium;
+      const netProfit = grossIncome - seedCostPerAcre - fertilizerCostPerAcre;
 
-    setEconomics({
-      seedCostPerAcre,
-      fertilizerCostPerAcre,
-      grossIncome,
-      netProfit
-    });
+      setEconomics({
+        seedCostPerAcre,
+        fertilizerCostPerAcre,
+        grossIncome,
+        netProfit
+      });
+    }
   }, [selectedVariety, selectedFertilizer, crop]);
 
   if (!crop) {
@@ -66,7 +77,19 @@ export default function CultivationPlanner({ cropId, farmerData, onBack }: Culti
   };
 
   return (
-    <div className="min-h-screen bg-gradient-earth p-4">
+    <div className="min-h-screen bg-gradient-earth p-4 relative">
+      {/* Home Button */}
+      <div className="absolute top-4 right-4 z-20">
+        <Button
+          onClick={() => window.location.href = '/'}
+          variant="outline"
+          className="bg-white/80 hover:bg-white border-2 border-green-200 hover:border-green-300 text-green-700 hover:text-green-800 font-semibold px-4 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+        >
+          <Home className="w-4 h-4 mr-2" />
+          Home
+        </Button>
+      </div>
+      
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-6">
@@ -269,6 +292,24 @@ export default function CultivationPlanner({ cropId, farmerData, onBack }: Culti
             </div>
           </CardContent>
         </Card>
+
+        {/* Adoption Confirmation */}
+        <div className="mt-8">
+          <AdoptionConfirmationDialog
+            cropName={crop.name}
+            farmerData={farmerData}
+            onAdopt={() => {
+              // Handle adoption - could navigate to a success page or show confirmation
+              console.log('Plan adopted successfully');
+            }}
+            onModify={() => {
+              // Handle modification - go back to recommendations to select different crop
+              if (window.confirm('Would you like to go back and select a different crop?')) {
+                window.location.href = '/recommendations';
+              }
+            }}
+          />
+        </div>
       </div>
     </div>
   );
